@@ -272,11 +272,11 @@ function isSpam(mail, keywords) {
 // тест1
 const mail = 'Big sales, get a huge bonus simply!!';
 const keywords = ['bonus', 'easy', 'sales'];
-console.log(isSpam(mail, keywords)) //Ответ: true
+console.log(isSpam(mail, keywords)) //Ответ: true - OK
 ///////////////////////////////////////////////////////////////////////////
 
 // тест2
-console.log(isSpam('Somebody once told me', ['bonus', 'easy', 'sales'])) //Ответ: false
+console.log(isSpam('Somebody once told me', ['bonus', 'easy', 'sales'])) //Ответ: false - OK
 ///////////////////////////////////////////////////////////////////////////
 
 
