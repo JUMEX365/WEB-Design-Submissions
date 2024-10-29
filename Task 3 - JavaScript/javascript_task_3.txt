@@ -1,0 +1,284 @@
+=====================================
+=  Быстро прогнать код можно тут:   =
+=  https://runjs.app/play           =
+=====================================
+
+===================================================================================
+1) TASK#1
+===================================================================================
+
+function solutionFn(numbers) {
+    let sum = 0;
+    
+    for (let number of numbers) {
+        if (number % 2 === 0) {
+            sum += number;
+        }
+    }
+    
+    return sum;
+}
+
+// тест1
+console.log(solutionFn([1, 2, 3, 4, 5, 6])); //Ответ: 12 - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+// тест2
+console.log(solutionFn([1, 3, 5, 7, 9, 11])); //Ответ: 0 - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+2) TASK#3
+===================================================================================
+
+function solutionFn(obj) {
+    const result = {};
+    
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const type = typeof obj[key];
+            if (!result[type]) {
+                result[type] = 1;
+            } else {
+                result[type]++;
+            }
+        }
+    }
+    
+    return result;
+}
+
+//тест1
+const initialObject = {
+    a: 'some string 1',
+    b: 42,
+    c: { c1: 'some string 2' },
+    d: [],
+    e: 123,
+};
+const resultObject = solutionFn(initialObject);
+console.log(resultObject); //Ответ: {string: 1, number: 2, object: 2} - OK
+///////////////////////////////////////////////////////////////////////////
+
+//тест2
+const initialObject2 = {
+    a: 'some string 1',
+    b: 42,
+    c: { c1: 'some string 2' },
+    d: [],
+    e: 123,
+    f: null,
+    g: undefined
+};
+
+const resultObject2 = solutionFn(initialObject2);
+console.log(resultObject2); //Ответ: {string: 1, number: 2, object: 3, undefined 1} - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+3) TASK#4
+===================================================================================
+
+function sum (leftOperand, rightOperand) {
+  if (typeof leftOperand !== 'number' && typeof rightOperand !== 'number') {
+    throw new Error("Operands are not numbers");
+  }
+
+  if (typeof leftOperand !== 'number') {
+    throw new Error("The left operand is not number");
+  }
+  if (typeof rightOperand !== 'number') {
+    throw new Error("The right operand is not number");
+  }
+
+  return leftOperand + rightOperand;
+};
+
+
+//тест1
+const result = sum('non number', 'yet another non number')
+console.log(result)//Ответ: Operands are not numbers - OK
+///////////////////////////////////////////////////////////////////////////
+
+//тест2
+const result2 = sum('non number', 2)
+console.log(result2)//Ответ: The left operand is not number - OK
+///////////////////////////////////////////////////////////////////////////
+
+//тест3
+const result3 = sum(2, 'non number')
+console.log(result3) //Ответ: The right operand is not number - OK
+///////////////////////////////////////////////////////////////////////////
+
+//тест4
+const result4 = sum(2, 2)
+console.log(result4) //Ответ: 4 - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+4) TASK#5
+===================================================================================
+
+
+function getMinimalCVS(initialArray) {
+  let history = [initialArray];
+  let currentVersion = [...initialArray];
+
+  return {
+    head: () => {
+      return [...currentVersion];
+    },
+    history: () => {
+      return [...history];
+    },
+    push: (element) => {
+      currentVersion.push(element);
+      history.push([...currentVersion]);
+    },
+    pop: () => {
+      if (currentVersion.length === 0) {
+        throw new Error("empty array");
+      }
+      const removedElement = currentVersion.pop();
+      history.push([...currentVersion]);
+      return removedElement;
+    }
+  };
+}
+
+// Тесты
+const cvs = getMinimalCVS(['a', 'b', 'c']);
+
+// тест1
+console.log(cvs.head()); //Ответ: ['a', 'b', 'c'] - OK
+///////////////////////////////////////////////////////////////////////////
+
+// тест2
+console.log(cvs.pop()); //Ответ:'c' - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+// тест3
+cvs.push('d');
+cvs.push('e');
+console.log(cvs.head()); //Ответ: ['a', 'b', 'd', 'e'] - OK
+///////////////////////////////////////////////////////////////////////////
+
+// тест4
+console.log(cvs.history()); //Ответ: [ [ 'a', 'b', 'c' ], [ 'a', 'b' ], [ 'a', 'b', 'd' ], [ 'a', 'b', 'd', 'e' ] ] - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+// тест5
+const cvs2 = getMinimalCVS(['a', 'b']);
+cvs2.push('c');
+cvs2.push('d');
+console.log(cvs2.head()) //Ответ: ['a', 'b', 'c', 'd']) - OK
+///////////////////////////////////////////////////////////////////////////
+
+// тест6
+const cvs3 = getMinimalCVS(['a', 'b']);
+cvs3.push('c');
+console.log(cvs3.history()) //Ответ: [ [ 'a', 'b' ], [ 'a', 'b', 'c' ] ] - ОК
+///////////////////////////////////////////////////////////////////////////
+
+// тест7
+cvs4 = getMinimalCVS(['a', 'b', 'c'])
+const element = cvs4.pop();
+const head = cvs4.head();
+console.log(element) //Ответ:  'c'
+console.log(head) //Ответ: [ 'a', 'b' ] - ОК
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+5) TASK#7
+===================================================================================
+
+function hitOrRun(a, b) {
+    if (a > b) {
+        throw new Error("Значение 'a' должно быть меньше или равно значению 'b'");
+    }
+    
+    const randomNum = Math.floor(Math.random() * (b - a + 1)) + a;
+    
+    function isPrime(num) {
+        if (num <= 1) return false; 
+        for (let i = 2; i * i <= num; i++) { 
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+    
+    if (isPrime(randomNum)) {
+        return "run";
+    } else {
+        return "hit";
+    }
+}
+
+// тест1
+console.log(hitOrRun(4, 4)) //Ответ: 'hit' - OK
+///////////////////////////////////////////////////////////////////////////
+
+// тест2
+console.log(hitOrRun(7, 7)) //Ответ: 'run' - OK
+///////////////////////////////////////////////////////////////////////////
+
+// тест3 доп(проверка на некорректные входные данные)
+console.log(hitOrRun(5, 1)) //Ответ: Error: Значение 'a' должно быть меньше или равно значению 'b' - OK
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+6) TASK#8
+===================================================================================
+
+function solutionFn(word) {
+    return word.replace(/(_[a-z])/g, function(match) {
+        return match.toUpperCase().replace('_', '');
+    });
+}
+
+// тест1
+console.log(solutionFn('data_in_snake_case')) //Ответ: 'dataInSnakeCase' - ОК
+///////////////////////////////////////////////////////////////////////////
+
+// тест2
+console.log(solutionFn('something')) //Ответ:'something' - ОК
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+7) TASK#9
+===================================================================================
+
+function isSpam(mail, keywords) {
+    const lowerCaseText = mail.toLowerCase();
+    for (let keyword of keywords) {
+        if (lowerCaseText.includes(keyword.toLowerCase())) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+
+
+// тест1
+const mail = 'Big sales, get a huge bonus simply!!';
+const keywords = ['bonus', 'easy', 'sales'];
+console.log(isSpam(mail, keywords)) //Ответ: true
+///////////////////////////////////////////////////////////////////////////
+
+// тест2
+console.log(isSpam('Somebody once told me', ['bonus', 'easy', 'sales'])) //Ответ: false
+///////////////////////////////////////////////////////////////////////////
+
+
+===================================================================================
+===================================================================================
