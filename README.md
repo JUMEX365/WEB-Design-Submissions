@@ -6,4 +6,4 @@
 3) Card Screen: [link](https://rawcdn.githack.com/JUMEX365/WEB-Design-Submissions/cce9fa6c6ff624be09c7dff5d74c7b42b81644a7/Task%202%20-%20Verstka,%20Litvinov/3.%20card%20screen/cardscreen.html)
 4) Figma template: [link](https://www.figma.com/community/file/1273571982885059508)
 
-##### 2) Task3 (JavaScript) submission: [link to file](https://github.com/JUMEX365/WEB-Design-Submissions/blob/6b85a7524589e595135c3a7299451c5f8bd085ee/Task%203%20-%20JavaScript/javascript_task_3.txt)
+##### 2) Task3 (JavaScript) submission: [link to file](https://github.com/JUMEX365/WEB-Design-Submissions/blob/4bf1668e6724fa13cfb0217b524c71f641605ffa/Task%203%20-%20JavaScript/javascript_task_3.txt)
