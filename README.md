@@ -7,3 +7,8 @@
 4) Figma template: [link](https://www.figma.com/community/file/1273571982885059508)
 
 ##### 2) Task3 (JavaScript) submission: [link to file](https://github.com/JUMEX365/WEB-Design-Submissions/blob/4bf1668e6724fa13cfb0217b524c71f641605ffa/Task%203%20-%20JavaScript/javascript_task_3.txt)
+
+##### 3) Task4 (API) submission: [link to files](https://github.com/JUMEX365/WEB-Design-Submissions/tree/d113b1e232fd235ea431c58b26f9cc85796d316b/Task%204%20-%20API)
+Note that credentials are placed to separete file in order to hide them from html page -> config.js (did not delete api key sinse it not sensitive for me)
+*Online Preview:*
+HTML render: [link](https://rawcdn.githack.com/JUMEX365/WEB-Design-Submissions/d113b1e232fd235ea431c58b26f9cc85796d316b/Task%204%20-%20API/index.html)
