@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курсы валют</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #курсы-валют {
+      margin-top: 20px;
+    }
+    .курса {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .курса:last-child {
+      border-bottom: none;
+    }
+    h1 {
+      text-align: center;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="header">Курсы валют</h1>
+    <div id="курсы-валют"></div>
+    <button class="button" onclick="отправитьСообщение()">Сообщить об ошибке</button>
+  </div>
+  <script>
+    function отобразитьКурсыВалют() {
+      const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const курсыВалют = JSON.parse(xhr.responseText);
+          const валюты = курсыВалют.Valute;
+          const курсыВалютContainer = document.getElementById('курсы-валют');
+          while (курсыВалютContainer.firstChild) {
+            курсыВалютContainer.removeChild(курсыВалютContainer.firstChild);
+          }
+          Object.keys(валюты).forEach(function(key) {
+            const валюта = валюты[key];
+            const строка = document.createElement('div');
+            строка.className = 'курса';
+            строка.innerHTML = `
+<p>Курс: ${валюта.Value}</p>
+<p>Номинал: ${валюта.Nominal}</p>
+<p>Валюта: ${валюта.CharCode}</p>
+`;
+            курсыВалютContainer.appendChild(строка);
+          });
+        }
+      };
+      xhr.send();
+    }
+
+    function отправитьСообщение() {
+      const { token, chatId } = getConfig();
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=Эй, Админ. Пользователь жалуется на какую-то ошибку на сайте с курсами валют`, {
+        method: 'POST'
+      });
+    }
+
+    async function getConfig() {
+      const response = await import('./config.js');
+      return response.getConfig();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      отобразитьКурсыВалют();
+    });
+  </script>
+  <script src="config.js"></script>
+</body>
+</html>
