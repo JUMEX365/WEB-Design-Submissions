@@ -11,3 +11,4 @@
 ##### 3) Task4 (API) submission: [link to files](https://github.com/JUMEX365/WEB-Design-Submissions/tree/d113b1e232fd235ea431c58b26f9cc85796d316b/Task%204%20-%20API)
 1. Note that credentials are placed to separete file in order to hide them from html page -> config.js (did not delete api key sinse it not sensitive for me)
 2. *Online Preview:* [link](https://rawcdn.githack.com/JUMEX365/WEB-Design-Submissions/d113b1e232fd235ea431c58b26f9cc85796d316b/Task%204%20-%20API/index.html)
+3. Bot [link](t.me/web_courseHSE_bot)
